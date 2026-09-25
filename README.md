@@ -21,14 +21,14 @@ Thực hành lập trình hướng đối tượng (Object-Oriented Programming)
   * Encapsulation (Đóng gói)
 
 ### Lab 2: LED Matrix
-Điều khiển LED Matrix bằng Python/MicroPython.
+Điều khiển LED Matrix bằng Python/MicroPython thông qua giao tiếp SPI.
 * **Chức năng hiển thị:**
-  * Lớp
-  * Mã sinh viên
+  * Cuộn chữ hiển thị thông tin Lớp (VD: `23IC`)
+  * Cuộn chữ hiển thị Mã sinh viên (VD: `23CE076`)
 * **Thiết bị sử dụng:**
-  * Microcontroller
-  * LED Matrix
-  * Module điều khiển LED Matrix
+  * Vi điều khiển (ESP32)
+  * Module LED Matrix 8x8 (sử dụng IC MAX7219)
+* **Kiến thức sử dụng:** `GPIO`, `Hardware SPI`, `MAX7219 Register Control`, `Hexadecimal Font Mapping`, `String Scrolling Algorithm`.
 
 ### Lab 3: Interrupt, Timer, PWM & RGB LED
 Thực hành điều khiển LED bằng Interrupt, Hardware Timer và PWM trên MicroPython.
@@ -67,7 +67,7 @@ Xây dựng hệ thống giám sát nhiệt độ và độ ẩm realtime sử d
 ## 🛠️ Technologies (Công nghệ & Thiết bị)
 
 - **Ngôn ngữ & Nền tảng:** Python, MicroPython, HTML/CSS, JavaScript.
-- **Phần cứng (Embedded Systems):** ESP32, ESP8266, LED Matrix, RGB LED, DHT11.
+- **Phần cứng (Embedded Systems):** ESP32, ESP8266, Module LED Matrix 8x8 (MAX7219), RGB LED, DHT11.
 - **Giao thức & Kỹ thuật vi điều khiển:** GPIO, SPI, PWM, Interrupt, Hardware Timer.
 - **Mạng & API:** Wi-Fi, HTTP, REST API, Socket, JSON.
 - **Thư viện bên thứ 3:** Chart.js, Open-Meteo API.
