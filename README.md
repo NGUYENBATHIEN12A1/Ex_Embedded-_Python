@@ -1,133 +1,82 @@
-Ex_Embedded-_Python
+# 🐍 Ex_Embedded-_Python
 
-Repository tổng hợp các bài thực hành môn Embedded Python.
+![Python](https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![MicroPython](https://img.shields.io/badge/MicroPython-2B2728?style=for-the-badge&logo=python&logoColor=white)
+![ESP32](https://img.shields.io/badge/ESP32-E7352C?style=for-the-badge&logo=espressif&logoColor=white)
+![HTML/CSS](https://img.shields.io/badge/HTML5_&_CSS3-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 
-📚 Labs
-Lab 1: OOP
+Repository tổng hợp các bài thực hành môn **Embedded Python**.
 
+---
+
+## 📚 Labs (Danh sách bài thực hành)
+
+### Lab 1: OOP
 Thực hành lập trình hướng đối tượng (Object-Oriented Programming) bằng Python.
+* **Nội dung kiến thức:**
+  * Class và Object
+  * Constructor
+  * Attribute và Method
+  * Inheritance (Kế thừa)
+  * Encapsulation (Đóng gói)
 
-Nội dung:
+### Lab 2: LED Matrix
+Điều khiển LED Matrix bằng Python/MicroPython.
+* **Chức năng hiển thị:**
+  * Lớp
+  * Mã sinh viên
+* **Thiết bị sử dụng:**
+  * Microcontroller
+  * LED Matrix
+  * Module điều khiển LED Matrix
 
-Class và Object
-Constructor
-Attribute và Method
-Inheritance
-Encapsulation
-Lab 2: LED Matrix
-
-Điều khiển LED Matrix bằng Python/MicroPython để hiển thị:
-
-Lớp
-Mã sinh viên
-
-Thiết bị sử dụng:
-
-Microcontroller
-LED Matrix
-Module điều khiển LED Matrix
-Lab 3: Interrupt, Timer, PWM & RGB LED
-
+### Lab 3: Interrupt, Timer, PWM & RGB LED
 Thực hành điều khiển LED bằng Interrupt, Hardware Timer và PWM trên MicroPython.
+* **Chức năng chính:**
+  * Sử dụng nút nhấn để chuyển đổi giữa 3 chế độ (Mode).
+  * **Mode 1:** LED đơn nhấp nháy sử dụng Hardware Timer.
+  * **Mode 2:** Điều khiển độ sáng LED bằng PWM với hiệu ứng Fading.
+  * **Mode 3:** Điều khiển LED RGB chuyển đổi tuần tự nhiều màu.
+  * Sử dụng Software Debounce để chống dội nút nhấn.
+* **Kiến thức sử dụng:** `GPIO`, `Interrupt`, `Hardware Timer`, `PWM`, `RGB LED`, `Software Debounce`.
 
-Chức năng:
-
-Sử dụng nút nhấn để chuyển đổi giữa 3 chế độ.
-Mode 1: LED đơn nhấp nháy sử dụng Hardware Timer.
-Mode 2: Điều khiển độ sáng LED bằng PWM với hiệu ứng Fading.
-Mode 3: Điều khiển LED RGB chuyển đổi tuần tự nhiều màu.
-Sử dụng Software Debounce để chống dội nút nhấn.
-
-Kiến thức sử dụng:
-
-GPIO
-Interrupt
-Hardware Timer
-PWM
-RGB LED
-Software Debounce
-Lab 4: ESP32 IoT Web Server
-
+### Lab 4: ESP32 IoT Web Server
 Xây dựng hệ thống IoT sử dụng ESP32, kết nối Wi-Fi và điều khiển thiết bị thông qua giao diện Web.
+* **Chức năng chính:**
+  * Kết nối ESP32 với Wi-Fi (Tự động kiểm tra và kết nối lại khi mất mạng).
+  * Xây dựng Web Server trên ESP32.
+  * Điều khiển LED từ trình duyệt Web.
+  * Gửi HTTP Request đến Open-Meteo API để lấy thông tin thời tiết: **Nhiệt độ**, **Độ ẩm**, **Tốc độ gió**.
+  * Hiển thị địa chỉ IP và trạng thái Wi-Fi trên Web.
+  * Tự động cập nhật dữ liệu thời tiết mỗi 30 giây.
+* **Kiến thức sử dụng:** `ESP32`, `Wi-Fi`, `HTTP`, `Socket`, `REST API`, `JSON`, `HTML/CSS`, `Web Server`.
 
-Chức năng:
-
-Kết nối ESP32 với Wi-Fi.
-Tự động kiểm tra và kết nối lại khi mất Wi-Fi.
-Xây dựng Web Server trên ESP32.
-Điều khiển LED từ trình duyệt Web.
-Gửi HTTP Request đến Open-Meteo API.
-Lấy thông tin thời tiết:
-Nhiệt độ
-Độ ẩm
-Tốc độ gió
-Hiển thị địa chỉ IP và trạng thái Wi-Fi trên Web.
-Tự động cập nhật dữ liệu thời tiết mỗi 30 giây.
-
-Kiến thức sử dụng:
-
-ESP32
-Wi-Fi
-HTTP
-Socket
-REST API
-JSON
-HTML/CSS
-Web Server
-Lab 5: DHT11 Web Monitoring
-
+### Lab 5: DHT11 Web Monitoring
 Xây dựng hệ thống giám sát nhiệt độ và độ ẩm realtime sử dụng ESP8266 và cảm biến DHT11.
+* **Chức năng chính:**
+  * Kết nối ESP8266 với Wi-Fi.
+  * Đọc nhiệt độ và độ ẩm từ cảm biến DHT11 (Chân kết nối: `DHT11 DATA` → `GPIO14`).
+  * Xây dựng Web Server trên ESP8266.
+  * Cung cấp dữ liệu cảm biến thông qua HTTP Endpoint `/data` dưới dạng JSON.
+  * Hiển thị nhiệt độ và độ ẩm trên biểu đồ realtime bằng Chart.js.
+  * Tự động cập nhật dữ liệu mỗi 5 giây.
+* **Kiến thức sử dụng:** `ESP8266`, `DHT11`, `Wi-Fi`, `HTTP`, `Socket`, `JSON`, `HTML/CSS`, `JavaScript`, `Chart.js`.
 
-Chức năng:
+---
 
-Kết nối ESP8266 với Wi-Fi.
-Đọc nhiệt độ và độ ẩm từ cảm biến DHT11.
-Xây dựng Web Server trên ESP8266.
-Cung cấp dữ liệu cảm biến thông qua HTTP Endpoint /data.
-Trả dữ liệu cảm biến dưới dạng JSON.
-Hiển thị nhiệt độ và độ ẩm trên biểu đồ realtime.
-Tự động cập nhật dữ liệu mỗi 5 giây.
-Sử dụng Chart.js để trực quan hóa dữ liệu.
+## 🛠️ Technologies (Công nghệ & Thiết bị)
 
-Thiết bị sử dụng:
+- **Ngôn ngữ & Nền tảng:** Python, MicroPython, HTML/CSS, JavaScript.
+- **Phần cứng (Embedded Systems):** ESP32, ESP8266, LED Matrix, RGB LED, DHT11.
+- **Giao thức & Kỹ thuật vi điều khiển:** GPIO, SPI, PWM, Interrupt, Hardware Timer.
+- **Mạng & API:** Wi-Fi, HTTP, REST API, Socket, JSON.
+- **Thư viện bên thứ 3:** Chart.js, Open-Meteo API.
 
-ESP8266
-DHT11
-Wi-Fi
+---
 
-Kết nối:
+## 📂 Repository Structure
 
-DHT11 DATA → GPIO14
-
-Kiến thức sử dụng:
-
-ESP8266
-DHT11
-Wi-Fi
-HTTP
-Socket
-JSON
-HTML/CSS
-JavaScript
-Chart.js
-🛠️ Technologies
-Python
-MicroPython
-Embedded Systems
-ESP32 / ESP8266
-GPIO
-SPI
-PWM
-Interrupt
-Hardware Timer
-Wi-Fi
-HTTP
-REST API
-JSON
-HTML/CSS
-JavaScript
-Chart.js
-📂 Repository Structure
+```text
 Ex_Embedded-_Python/
 │
 ├── Lab1/
