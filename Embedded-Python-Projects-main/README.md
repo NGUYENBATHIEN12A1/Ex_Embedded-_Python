@@ -400,22 +400,4 @@ Embedded-Python-Projects/
 
 ---
 
-## 👤 Tác giả
 
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/NGUYENBATHIEN12A1">
-        <img src="https://github.com/NGUYENBATHIEN12A1.png" width="90" alt="avatar"><br>
-        <b>Nguyễn Bá Thiện</b>
-      </a><br>
-      <sub>@NGUYENBATHIEN12A1</sub>
-    </td>
-  </tr>
-</table>
-
-<div align="center">
-
-⭐ Nếu thấy repository hữu ích, hãy để lại một **star** nhé!
-
-</div>
