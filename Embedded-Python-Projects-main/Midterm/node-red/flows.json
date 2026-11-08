@@ -1,0 +1,847 @@
+[
+    {
+        "id": "vkuweatherflow01",
+        "type": "tab",
+        "label": "VKU Weather",
+        "disabled": false,
+        "info": "Node-RED dashboard for the monitoring station. Subscribes directly to the MQTT broker, no changes needed on the ESP32 firmware."
+    },
+    {
+        "id": "vkubroker0000001",
+        "type": "mqtt-broker",
+        "name": "Mosquitto (localhost)",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true
+    },
+    {
+        "id": "vkuuibase0000001",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "VKU Weather · Node-RED",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "vkuuitab00000001",
+        "type": "ui_tab",
+        "name": "Monitoring Station",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "vkugroupnow00001",
+        "type": "ui_group",
+        "name": "Current Readings",
+        "tab": "vkuuitab00000001",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "vkugroupdev00001",
+        "type": "ui_group",
+        "name": "Device esp32-01",
+        "tab": "vkuuitab00000001",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "vkugroupctl00001",
+        "type": "ui_group",
+        "name": "Controls",
+        "tab": "vkuuitab00000001",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "vkugroupchart001",
+        "type": "ui_group",
+        "name": "Charts (last hour)",
+        "tab": "vkuuitab00000001",
+        "order": 3,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "vkucomment000001",
+        "type": "comment",
+        "z": "vkuweatherflow01",
+        "name": "Data: vku/weather/+/data",
+        "info": "The ESP32 publishes JSON every cycle. The function splits each quantity out to the gauges, charts and device info table.",
+        "x": 150,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "vkumqttdata00001",
+        "type": "mqtt in",
+        "z": "vkuweatherflow01",
+        "name": "",
+        "topic": "vku/weather/+/data",
+        "qos": "1",
+        "datatype": "json",
+        "broker": "vkubroker0000001",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "vkufuncsplit0001",
+                "vkufuncalert0001"
+            ]
+        ]
+    },
+    {
+        "id": "vkufuncsplit0001",
+        "type": "function",
+        "z": "vkuweatherflow01",
+        "name": "Split readings",
+        "func": "// Shows a single device; change DEVICE if you use a different device_id\nconst DEVICE = 'esp32-01';\nconst r = msg.payload;\nif (typeof r !== 'object' || r === null || r.device_id !== DEVICE) return null;\n\nconst val = (v, topic) => (v === null || v === undefined) ? null : { payload: v, topic };\nconst t = r.ts ? new Date(r.ts * 1000) : new Date();\n\nreturn [\n    val(r.temperature, 'Temperature'),\n    val(r.humidity, 'Humidity'),\n    val(r.pressure, 'Pressure'),\n    val(r.light, 'Light'),\n    val(r.temperature, 'Temperature'),\n    val(r.humidity, 'Humidity'),\n    val(r.pressure, 'Pressure'),\n    val(r.light, 'Light'),\n    {\n        topic: 'data', payload: {\n            updated: t.toLocaleString('en-GB', { timeZone: 'Asia/Ho_Chi_Minh' }),\n            errors: r.errors && r.errors.length ? '⚠ ' + r.errors.join(', ') : 'None',\n            rssi: r.rssi !== null && r.rssi !== undefined ? r.rssi + ' dBm' : '—',\n            interval: r.interval ? r.interval + ' s' : '—',\n            seq: r.seq !== null && r.seq !== undefined ? r.seq : '—',\n        },\n    },\n];",
+        "outputs": 9,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 100,
+        "wires": [
+            [
+                "vkugaugetemp0001"
+            ],
+            [
+                "vkugaugehum00001"
+            ],
+            [
+                "vkugaugepres0001"
+            ],
+            [
+                "vkugaugelight001"
+            ],
+            [
+                "vkucharttemp0001"
+            ],
+            [
+                "vkucharthum00001"
+            ],
+            [
+                "vkuchartpres0001"
+            ],
+            [
+                "vkuchartlight001"
+            ],
+            [
+                "vkufuncinfo00001"
+            ]
+        ]
+    },
+    {
+        "id": "vkugaugetemp0001",
+        "type": "ui_gauge",
+        "z": "vkuweatherflow01",
+        "name": "Temperature",
+        "group": "vkugroupnow00001",
+        "order": 1,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 50,
+        "colors": [
+            "#1e90ff",
+            "#00b500",
+            "#ca3838"
+        ],
+        "seg1": 20,
+        "seg2": 35,
+        "diff": false,
+        "className": "",
+        "x": 640,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "vkugaugehum00001",
+        "type": "ui_gauge",
+        "z": "vkuweatherflow01",
+        "name": "Humidity",
+        "group": "vkugroupnow00001",
+        "order": 2,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 100,
+        "colors": [
+            "#ff7f0e",
+            "#00b500",
+            "#1f77b4"
+        ],
+        "seg1": 30,
+        "seg2": 90,
+        "diff": false,
+        "className": "",
+        "x": 640,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "vkugaugepres0001",
+        "type": "ui_gauge",
+        "z": "vkuweatherflow01",
+        "name": "Pressure",
+        "group": "vkugroupnow00001",
+        "order": 3,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Pressure",
+        "label": "hPa",
+        "format": "{{value}}",
+        "min": 950,
+        "max": 1050,
+        "colors": [
+            "#1f77b4",
+            "#00b500",
+            "#ff7f0e"
+        ],
+        "seg1": 1000,
+        "seg2": 1020,
+        "diff": false,
+        "className": "",
+        "x": 640,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "vkugaugelight001",
+        "type": "ui_gauge",
+        "z": "vkuweatherflow01",
+        "name": "Light",
+        "group": "vkugroupnow00001",
+        "order": 4,
+        "width": 3,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Light",
+        "label": "lux",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 2000,
+        "colors": [
+            "#555555",
+            "#e6b800",
+            "#ff7f0e"
+        ],
+        "seg1": 50,
+        "seg2": 1000,
+        "diff": false,
+        "className": "",
+        "x": 640,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "vkucharttemp0001",
+        "type": "ui_chart",
+        "z": "vkuweatherflow01",
+        "name": "Temperature (°C)",
+        "group": "vkugroupchart001",
+        "order": 1,
+        "width": 6,
+        "height": 4,
+        "label": "Temperature (°C)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Waiting for data from ESP32...",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#d62728",
+            "#1f77b4",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#aec7e8",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 630,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "vkucharthum00001",
+        "type": "ui_chart",
+        "z": "vkuweatherflow01",
+        "name": "Humidity (%)",
+        "group": "vkugroupchart001",
+        "order": 2,
+        "width": 6,
+        "height": 4,
+        "label": "Humidity (%)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Waiting for data from ESP32...",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#1f77b4",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#aec7e8",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 630,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "vkuchartpres0001",
+        "type": "ui_chart",
+        "z": "vkuweatherflow01",
+        "name": "Pressure (hPa)",
+        "group": "vkugroupchart001",
+        "order": 3,
+        "width": 6,
+        "height": 4,
+        "label": "Pressure (hPa)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Waiting for data from ESP32...",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#9467bd",
+            "#1f77b4",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#aec7e8",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 630,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "vkuchartlight001",
+        "type": "ui_chart",
+        "z": "vkuweatherflow01",
+        "name": "Light (lux)",
+        "group": "vkugroupchart001",
+        "order": 4,
+        "width": 6,
+        "height": 4,
+        "label": "Light (lux)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Waiting for data from ESP32...",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "1",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ff7f0e",
+            "#1f77b4",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#aec7e8",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 640,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "vkufuncinfo00001",
+        "type": "function",
+        "z": "vkuweatherflow01",
+        "name": "Device info",
+        "func": "// Merges data and status messages into one device info table\nconst info = context.get('info') || { status: '—', updated: '—', errors: '—', rssi: '—', interval: '—', seq: '—' };\nif (msg.topic === 'status') info.status = msg.payload;\nelse Object.assign(info, msg.payload);\ncontext.set('info', info);\nmsg.payload = [\n    ['Status', info.status],\n    ['Last update', info.updated],\n    ['Sensor errors', info.errors],\n    ['Wi-Fi RSSI', info.rssi],\n    ['Interval', info.interval],\n    ['Sequence (seq)', info.seq],\n];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 380,
+        "wires": [
+            [
+                "vkutplinfo000001"
+            ]
+        ]
+    },
+    {
+        "id": "vkutplinfo000001",
+        "type": "ui_template",
+        "z": "vkuweatherflow01",
+        "group": "vkugroupdev00001",
+        "name": "Device table",
+        "order": 1,
+        "width": 6,
+        "height": 6,
+        "format": "<table style=\"width:100%; border-collapse:collapse; font-size:15px\">\n    <tr ng-repeat=\"row in msg.payload\" style=\"border-bottom:1px solid #eee\">\n        <td style=\"padding:10px 0; color:#555\">{{row[0]}}</td>\n        <td style=\"padding:10px 0; text-align:right; font-weight:600\">{{row[1]}}</td>\n    </tr>\n</table>",
+        "storeOutMessages": true,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 880,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "vkufuncalert0001",
+        "type": "function",
+        "z": "vkuweatherflow01",
+        "name": "Check thresholds",
+        "func": "// Alert thresholds (lo/hi = null disables that side); the same alert repeats at most every COOLDOWN_MS\nconst DEVICE = 'esp32-01';\nconst LIMITS = {\n    temperature: { lo: null, hi: 35, name: 'Temperature', unit: '°C' },\n    humidity: { lo: 30, hi: 90, name: 'Humidity', unit: '%' },\n    light: { lo: 50, hi: null, name: 'Light', unit: 'lux' },\n};\nconst COOLDOWN_MS = 300000;\n\nconst r = msg.payload;\nif (typeof r !== 'object' || r === null || r.device_id !== DEVICE) return null;\n\nconst last = context.get('last') || {};\nconst now = Date.now();\nconst out = [];\nfor (const [key, l] of Object.entries(LIMITS)) {\n    const v = r[key];\n    if (v === null || v === undefined) continue;\n    let text = null;\n    if (l.hi !== null && v > l.hi) text = `${l.name} high: ${v} ${l.unit} (limit ${l.hi})`;\n    else if (l.lo !== null && v < l.lo) text = `${l.name} low: ${v} ${l.unit} (limit ${l.lo})`;\n    if (!text || now - (last[key] || 0) < COOLDOWN_MS) continue;\n    last[key] = now;\n    out.push({ topic: '⚠ Alert ' + r.device_id, payload: text });\n}\ncontext.set('last', last);\nreturn [out];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 540,
+        "wires": [
+            [
+                "vkutoastalert001"
+            ]
+        ]
+    },
+    {
+        "id": "vkutoastalert001",
+        "type": "ui_toast",
+        "z": "vkuweatherflow01",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "Alert notification",
+        "x": 630,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "vkucomment000002",
+        "type": "comment",
+        "z": "vkuweatherflow01",
+        "name": "Status: vku/weather/+/status (LWT)",
+        "info": "online when the ESP32 connects; the broker publishes offline by itself (Last Will) when the ESP32 loses its connection.",
+        "x": 190,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "vkumqttstatus001",
+        "type": "mqtt in",
+        "z": "vkuweatherflow01",
+        "name": "",
+        "topic": "vku/weather/esp32-01/status",
+        "qos": "1",
+        "datatype": "utf8",
+        "broker": "vkubroker0000001",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 680,
+        "wires": [
+            [
+                "vkufuncstatus001"
+            ]
+        ]
+    },
+    {
+        "id": "vkufuncstatus001",
+        "type": "function",
+        "z": "vkuweatherflow01",
+        "name": "Online / Offline",
+        "func": "const online = String(msg.payload).trim() === 'online';\nmsg.topic = 'status';\nmsg.payload = online ? '🟢 Online' : '🔴 Offline';\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 680,
+        "wires": [
+            [
+                "vkufuncinfo00001"
+            ]
+        ]
+    },
+    {
+        "id": "vkucomment000003",
+        "type": "comment",
+        "z": "vkuweatherflow01",
+        "name": "Control: vku/weather/esp32-01/cmd → ack",
+        "info": "Dashboard controls publish commands; the ESP32 replies on the ack topic.",
+        "x": 210,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "vkubtnreadnow001",
+        "type": "ui_button",
+        "z": "vkuweatherflow01",
+        "name": "Read now",
+        "group": "vkugroupctl00001",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Read now",
+        "tooltip": "Send the read_now command",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-refresh",
+        "payload": "{\"cmd\":\"read_now\"}",
+        "payloadType": "json",
+        "topic": "",
+        "topicType": "str",
+        "x": 140,
+        "y": 820,
+        "wires": [
+            [
+                "vkumqttcmd000001"
+            ]
+        ]
+    },
+    {
+        "id": "vkuddinterval001",
+        "type": "ui_dropdown",
+        "z": "vkuweatherflow01",
+        "name": "Interval",
+        "label": "Change interval",
+        "tooltip": "Send the set_interval command",
+        "place": "Select interval",
+        "group": "vkugroupctl00001",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "5 seconds",
+                "value": 5,
+                "type": "num"
+            },
+            {
+                "label": "10 seconds",
+                "value": 10,
+                "type": "num"
+            },
+            {
+                "label": "30 seconds",
+                "value": 30,
+                "type": "num"
+            },
+            {
+                "label": "60 seconds",
+                "value": 60,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "",
+        "topicType": "str",
+        "className": "",
+        "x": 140,
+        "y": 880,
+        "wires": [
+            [
+                "vkufuncinterval1"
+            ]
+        ]
+    },
+    {
+        "id": "vkufuncinterval1",
+        "type": "function",
+        "z": "vkuweatherflow01",
+        "name": "set_interval",
+        "func": "msg.payload = { cmd: 'set_interval', value: Number(msg.payload) };\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 880,
+        "wires": [
+            [
+                "vkumqttcmd000001"
+            ]
+        ]
+    },
+    {
+        "id": "vkumqttcmd000001",
+        "type": "mqtt out",
+        "z": "vkuweatherflow01",
+        "name": "Send command to ESP32",
+        "topic": "vku/weather/esp32-01/cmd",
+        "qos": "1",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "vkubroker0000001",
+        "x": 600,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "vkumqttack000001",
+        "type": "mqtt in",
+        "z": "vkuweatherflow01",
+        "name": "",
+        "topic": "vku/weather/esp32-01/ack",
+        "qos": "1",
+        "datatype": "json",
+        "broker": "vkubroker0000001",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 940,
+        "wires": [
+            [
+                "vkufuncack000001"
+            ]
+        ]
+    },
+    {
+        "id": "vkufuncack000001",
+        "type": "function",
+        "z": "vkuweatherflow01",
+        "name": "Command result",
+        "func": "const a = msg.payload || {};\nconst names = { read_now: 'Read now', set_interval: 'Change interval', reboot: 'Reboot' };\nconst what = names[a.cmd] || a.cmd;\nmsg.topic = msg.topic.split('/')[2];\nmsg.payload = a.ok\n    ? `✔ Command \"${what}\" accepted` + (a.value !== undefined ? ` (${a.value} s)` : '')\n    : `✖ Command \"${what}\" rejected`;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 940,
+        "wires": [
+            [
+                "vkutoastack00001"
+            ]
+        ]
+    },
+    {
+        "id": "vkutoastack00001",
+        "type": "ui_toast",
+        "z": "vkuweatherflow01",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "Ack notification",
+        "x": 610,
+        "y": 940,
+        "wires": []
+    }
+]

@@ -1,0 +1,15 @@
+# Node-RED: cài lại bằng `npm install`, file runtime tự sinh
+node-red/node_modules/
+node-red/.config.*.json
+node-red/*.backup
+node-red/.flows.json.backup
+
+# Python
+__pycache__/
+*.pyc
+
+# Dữ liệu persistence của Mosquitto
+broker/data/
+
+# File backup của draw.io
+*.bkp

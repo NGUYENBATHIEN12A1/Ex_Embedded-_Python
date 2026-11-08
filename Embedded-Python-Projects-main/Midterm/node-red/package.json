@@ -1,0 +1,11 @@
+{
+    "name": "vku-weather-node-red",
+    "description": "Node-RED dashboard for the ESP32 + MQTT monitoring station",
+    "private": true,
+    "scripts": {
+        "start": "node-red --userDir . --settings settings.js"
+    },
+    "dependencies": {
+        "node-red-dashboard": "3.6.6"
+    }
+}

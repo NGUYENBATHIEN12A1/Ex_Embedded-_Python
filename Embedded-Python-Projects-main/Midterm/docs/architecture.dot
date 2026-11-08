@@ -1,0 +1,28 @@
+digraph G {
+  rankdir=LR; bgcolor="white"; pad=0.3; nodesep=0.5; ranksep=0.9;
+  node [shape=box, style="rounded,filled", fontname="Segoe UI", fontsize=12, color="#5b6b82", fillcolor="#f4f6f9"];
+  edge [fontname="Segoe UI", fontsize=10, color="#5b6b82"];
+
+  subgraph cluster_node { label="Nút cảm biến"; fontname="Segoe UI Semibold"; style="rounded,dashed"; color="#adb5bd";
+    dht [label="DHT22\nnhiệt độ, độ ẩm", fillcolor="#fff0e6"];
+    bmp [label="BMP280\náp suất (I2C 0x76)", fillcolor="#f0ebff"];
+    bh  [label="BH1750\nánh sáng (I2C 0x23)", fillcolor="#fff9db"];
+    esp [label="ESP32 DevKit V1\nMicroPython\nWDT · auto-reconnect", fillcolor="#e7f0ff", penwidth=2];
+    dht -> esp [label="GPIO4"]; bmp -> esp [label="I2C"]; bh -> esp [label="I2C"];
+  }
+  broker [label="Mosquitto\nMQTT Broker :1883", fillcolor="#e6f7ec", penwidth=2];
+  subgraph cluster_nr { label="Node-RED :1880"; fontname="Segoe UI Semibold"; style="rounded,dashed"; color="#adb5bd";
+    flow [label="Flow VKU Weather\nmqtt in / out · function\nkiểm tra ngưỡng"];
+    ui   [label="node-red-dashboard\ngauge · chart · toast"];
+    { rank=same; flow; ui; }
+    flow -> ui;
+  }
+  web [label="Trình duyệt\n/ui (PC / điện thoại)", fillcolor="#e7f0ff"];
+
+  esp -> broker [label="publish .../data, .../status (LWT), .../ack"];
+  broker -> esp [label=".../cmd", style=dashed];
+  broker -> flow [label="subscribe .../data,\n.../status, .../ack"];
+  flow -> broker [label="publish .../cmd", style=dashed];
+  ui -> web [label="WebSocket\n(real-time)"];
+  web -> ui [label="nút Read now,\nChange interval", style=dashed];
+}

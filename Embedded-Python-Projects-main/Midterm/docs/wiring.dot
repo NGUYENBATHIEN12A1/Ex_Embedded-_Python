@@ -1,0 +1,17 @@
+graph W {
+  rankdir=LR; bgcolor="white"; pad=0.3; nodesep=0.25; ranksep=1.6; splines=true;
+  node [shape=record, fontname="Segoe UI", fontsize=11, style=filled, fillcolor="#f4f6f9", color="#5b6b82"];
+  edge [penwidth=2];
+  esp [label="{ESP32 DevKit V1|{<v>3V3|<g>GND|<p4>GPIO4|<sda>GPIO21 (SDA)|<scl>GPIO22 (SCL)|<p2>GPIO2 (LED onboard)}}", fillcolor="#e7f0ff"];
+  dht [label="{DHT22|{<v>VCC (+)|<d>DATA|<g>GND (-)}}", fillcolor="#fff0e6"];
+  bmp [label="{BMP280 (GY-BMP280)|{<v>VCC|<g>GND|<sda>SDA|<scl>SCL|<csb>CSB|<sdo>SDO}}", fillcolor="#f0ebff"];
+  bh  [label="{BH1750 (GY-302)|{<v>VCC|<g>GND|<sda>SDA|<scl>SCL|<a>ADDR}}", fillcolor="#fff9db"];
+  esp:v -- dht:v [color="#e03131"]; esp:g -- dht:g [color="#212529"]; esp:p4 -- dht:d [color="#2f9e44"];
+  esp:v -- bmp:v [color="#e03131"]; esp:g -- bmp:g [color="#212529"];
+  esp:sda -- bmp:sda [color="#1c7ed6"]; esp:scl -- bmp:scl [color="#f08c00"];
+  esp:v -- bmp:csb [color="#e03131", style=dashed, label="CSB=3V3 → I2C", fontname="Segoe UI", fontsize=10];
+  esp:g -- bmp:sdo [color="#212529", style=dashed, label="SDO=GND → 0x76", fontname="Segoe UI", fontsize=10];
+  esp:v -- bh:v [color="#e03131"]; esp:g -- bh:g [color="#212529"];
+  esp:sda -- bh:sda [color="#1c7ed6"]; esp:scl -- bh:scl [color="#f08c00"];
+  esp:g -- bh:a [color="#212529", style=dashed, label="ADDR=GND → 0x23", fontname="Segoe UI", fontsize=10];
+}

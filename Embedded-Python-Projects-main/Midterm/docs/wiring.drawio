@@ -1,0 +1,195 @@
+<mxfile host="Electron">
+  <diagram id="wiring" name="Wiring">
+    <mxGraphModel dx="1200" dy="900" grid="0" gridSize="10" guides="1" tooltips="1" connect="0" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1080" pageHeight="980" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ESP32 -->
+        <mxCell id="esp" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=16;" value="&lt;b&gt;ESP32 DevKit V1&lt;/b&gt; (ESP32-WROOM-32) · MicroPython" vertex="1">
+          <mxGeometry x="40" y="40" width="600" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p_led" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#6c8ebf;fontSize=13;fontColor=#666666;" value="GPIO2&lt;br&gt;LED onboard" vertex="1">
+          <mxGeometry x="40" y="100" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="p_scl" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=13;" value="&lt;b&gt;GPIO22&lt;/b&gt;&lt;br&gt;SCL" vertex="1">
+          <mxGeometry x="140" y="100" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="p_sda" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=13;" value="&lt;b&gt;GPIO21&lt;/b&gt;&lt;br&gt;SDA" vertex="1">
+          <mxGeometry x="240" y="100" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="p_gpio4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=13;" value="&lt;b&gt;GPIO4&lt;/b&gt;&lt;br&gt;DATA" vertex="1">
+          <mxGeometry x="340" y="100" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="p_3v3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=13;" value="&lt;b&gt;3V3&lt;/b&gt;" vertex="1">
+          <mxGeometry x="440" y="100" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="p_gnd" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=13;" value="&lt;b&gt;GND&lt;/b&gt;" vertex="1">
+          <mxGeometry x="540" y="100" width="100" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- DHT22 -->
+        <mxCell id="dht_vcc" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=13;" value="VCC" vertex="1">
+          <mxGeometry x="700" y="210" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dht_data" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=13;" value="DATA" vertex="1">
+          <mxGeometry x="700" y="250" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dht_gnd" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=13;" value="GND" vertex="1">
+          <mxGeometry x="700" y="290" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="dht" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=14;" value="&lt;b&gt;DHT22&lt;/b&gt;&lt;br&gt;Temperature, humidity&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;1-Wire&lt;/font&gt;" vertex="1">
+          <mxGeometry x="790" y="210" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- BH1750 -->
+        <mxCell id="bh_vcc" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=13;" value="VCC" vertex="1">
+          <mxGeometry x="700" y="380" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bh_gnd" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=13;" value="GND" vertex="1">
+          <mxGeometry x="700" y="420" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bh_sda" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=13;" value="SDA" vertex="1">
+          <mxGeometry x="700" y="460" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bh_scl" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=13;" value="SCL" vertex="1">
+          <mxGeometry x="700" y="500" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bh_addr" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=13;" value="ADDR" vertex="1">
+          <mxGeometry x="700" y="540" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bh" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=14;" value="&lt;b&gt;BH1750&lt;/b&gt; (GY-302)&lt;br&gt;Light intensity&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;I2C address 0x23&lt;br&gt;(ADDR tied to GND)&lt;/font&gt;" vertex="1">
+          <mxGeometry x="790" y="380" width="240" height="200" as="geometry" />
+        </mxCell>
+
+        <!-- BMP280 -->
+        <mxCell id="bmp_vin" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=13;" value="VCC" vertex="1">
+          <mxGeometry x="700" y="630" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bmp_gnd" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=13;" value="GND" vertex="1">
+          <mxGeometry x="700" y="670" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bmp_sda" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=13;" value="SDA" vertex="1">
+          <mxGeometry x="700" y="710" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bmp_scl" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=13;" value="SCL" vertex="1">
+          <mxGeometry x="700" y="750" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bmp_csb" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=13;" value="CSB" vertex="1">
+          <mxGeometry x="700" y="790" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bmp_sdo" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=13;" value="SDO" vertex="1">
+          <mxGeometry x="700" y="830" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="bmp" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=14;" value="&lt;b&gt;BMP280&lt;/b&gt; (GY-BMP280)&lt;br&gt;Pressure, altitude&lt;br&gt;&lt;font color=&quot;#666666&quot;&gt;I2C address 0x76&lt;br&gt;(SDO tied to GND)&lt;br&gt;CSB tied to 3V3 → I2C mode&lt;br&gt;3.3 V only&lt;/font&gt;" vertex="1">
+          <mxGeometry x="790" y="630" width="240" height="240" as="geometry" />
+        </mxCell>
+
+        <!-- Vertical rails from the ESP32 pins -->
+        <mxCell id="r_scl" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#F08C00;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="190" y="150" as="sourcePoint" /><mxPoint x="190" y="770" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="r_sda" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#1E6FD9;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="290" y="150" as="sourcePoint" /><mxPoint x="290" y="730" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="r_gpio4" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#2E9D47;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="390" y="150" as="sourcePoint" /><mxPoint x="390" y="270" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="r_3v3" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#D93636;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="490" y="150" as="sourcePoint" /><mxPoint x="490" y="810" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="r_gnd" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#222222;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="590" y="150" as="sourcePoint" /><mxPoint x="590" y="850" as="targetPoint" /></mxGeometry>
+        </mxCell>
+
+        <!-- Branches into sensor pins (jump over the rails they cross) -->
+        <mxCell id="w_dht_vcc" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#D93636;jumpStyle=arc;jumpSize=14;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="490" y="230" as="sourcePoint" /><mxPoint x="700" y="230" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="w_dht_data" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#2E9D47;jumpStyle=arc;jumpSize=14;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="390" y="270" as="sourcePoint" /><mxPoint x="700" y="270" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="w_dht_gnd" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#222222;jumpStyle=arc;jumpSize=14;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="590" y="310" as="sourcePoint" /><mxPoint x="700" y="310" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="w_bh_vcc" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#D93636;jumpStyle=arc;jumpSize=14;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="490" y="400" as="sourcePoint" /><mxPoint x="700" y="400" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="w_bh_gnd" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#222222;jumpStyle=arc;jumpSize=14;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="590" y="440" as="sourcePoint" /><mxPoint x="700" y="440" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="w_bh_sda" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#1E6FD9;jumpStyle=arc;jumpSize=14;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="290" y="480" as="sourcePoint" /><mxPoint x="700" y="480" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="w_bh_scl" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#F08C00;jumpStyle=arc;jumpSize=14;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="190" y="520" as="sourcePoint" /><mxPoint x="700" y="520" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="w_bh_addr" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#222222;dashed=1;jumpStyle=arc;jumpSize=14;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="590" y="560" as="sourcePoint" /><mxPoint x="700" y="560" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="w_bmp_vin" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#D93636;jumpStyle=arc;jumpSize=14;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="490" y="650" as="sourcePoint" /><mxPoint x="700" y="650" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="w_bmp_gnd" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#222222;jumpStyle=arc;jumpSize=14;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="590" y="690" as="sourcePoint" /><mxPoint x="700" y="690" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="w_bmp_sda" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#1E6FD9;jumpStyle=arc;jumpSize=14;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="290" y="730" as="sourcePoint" /><mxPoint x="700" y="730" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="w_bmp_scl" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#F08C00;jumpStyle=arc;jumpSize=14;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="190" y="770" as="sourcePoint" /><mxPoint x="700" y="770" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="w_bmp_csb" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#D93636;dashed=1;jumpStyle=arc;jumpSize=14;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="490" y="810" as="sourcePoint" /><mxPoint x="700" y="810" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="w_bmp_sdo" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#222222;dashed=1;jumpStyle=arc;jumpSize=14;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="590" y="850" as="sourcePoint" /><mxPoint x="700" y="850" as="targetPoint" /></mxGeometry>
+        </mxCell>
+
+        <!-- Junction dots -->
+        <mxCell id="j1" parent="1" style="ellipse;fillColor=#D93636;strokeColor=none;" vertex="1"><mxGeometry x="484" y="224" width="12" height="12" as="geometry" /></mxCell>
+        <mxCell id="j2" parent="1" style="ellipse;fillColor=#D93636;strokeColor=none;" vertex="1"><mxGeometry x="484" y="394" width="12" height="12" as="geometry" /></mxCell>
+        <mxCell id="j3" parent="1" style="ellipse;fillColor=#D93636;strokeColor=none;" vertex="1"><mxGeometry x="484" y="644" width="12" height="12" as="geometry" /></mxCell>
+        <mxCell id="j4" parent="1" style="ellipse;fillColor=#222222;strokeColor=none;" vertex="1"><mxGeometry x="584" y="304" width="12" height="12" as="geometry" /></mxCell>
+        <mxCell id="j5" parent="1" style="ellipse;fillColor=#222222;strokeColor=none;" vertex="1"><mxGeometry x="584" y="434" width="12" height="12" as="geometry" /></mxCell>
+        <mxCell id="j6" parent="1" style="ellipse;fillColor=#222222;strokeColor=none;" vertex="1"><mxGeometry x="584" y="554" width="12" height="12" as="geometry" /></mxCell>
+        <mxCell id="j7" parent="1" style="ellipse;fillColor=#222222;strokeColor=none;" vertex="1"><mxGeometry x="584" y="684" width="12" height="12" as="geometry" /></mxCell>
+        <mxCell id="j8" parent="1" style="ellipse;fillColor=#2E9D47;strokeColor=none;" vertex="1"><mxGeometry x="384" y="264" width="12" height="12" as="geometry" /></mxCell>
+        <mxCell id="j9" parent="1" style="ellipse;fillColor=#1E6FD9;strokeColor=none;" vertex="1"><mxGeometry x="284" y="474" width="12" height="12" as="geometry" /></mxCell>
+        <mxCell id="j10" parent="1" style="ellipse;fillColor=#1E6FD9;strokeColor=none;" vertex="1"><mxGeometry x="284" y="724" width="12" height="12" as="geometry" /></mxCell>
+        <mxCell id="j11" parent="1" style="ellipse;fillColor=#F08C00;strokeColor=none;" vertex="1"><mxGeometry x="184" y="514" width="12" height="12" as="geometry" /></mxCell>
+        <mxCell id="j12" parent="1" style="ellipse;fillColor=#F08C00;strokeColor=none;" vertex="1"><mxGeometry x="184" y="764" width="12" height="12" as="geometry" /></mxCell>
+        <mxCell id="j13" parent="1" style="ellipse;fillColor=#D93636;strokeColor=none;" vertex="1"><mxGeometry x="484" y="804" width="12" height="12" as="geometry" /></mxCell>
+        <mxCell id="j14" parent="1" style="ellipse;fillColor=#222222;strokeColor=none;" vertex="1"><mxGeometry x="584" y="844" width="12" height="12" as="geometry" /></mxCell>
+
+        <!-- Bus note -->
+        <mxCell id="note_i2c" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#1E6FD9;" value="&lt;b&gt;Shared I2C bus&lt;/b&gt;&lt;br&gt;BH1750 0x23 + BMP280 0x76" vertex="1">
+          <mxGeometry x="300" y="580" width="180" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="lg_3v3" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#D93636;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="40" y="920" as="sourcePoint" /><mxPoint x="80" y="920" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="lgt_3v3" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;" value="3.3 V power" vertex="1"><mxGeometry x="88" y="908" width="100" height="24" as="geometry" /></mxCell>
+        <mxCell id="lg_gnd" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#222222;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="200" y="920" as="sourcePoint" /><mxPoint x="240" y="920" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="lgt_gnd" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;" value="Ground" vertex="1"><mxGeometry x="248" y="908" width="70" height="24" as="geometry" /></mxCell>
+        <mxCell id="lg_gpio4" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#2E9D47;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="330" y="920" as="sourcePoint" /><mxPoint x="370" y="920" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="lgt_gpio4" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;" value="DHT22 data (1-Wire)" vertex="1"><mxGeometry x="378" y="908" width="150" height="24" as="geometry" /></mxCell>
+        <mxCell id="lg_sda" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#1E6FD9;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="540" y="920" as="sourcePoint" /><mxPoint x="580" y="920" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="lgt_sda" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;" value="I2C SDA" vertex="1"><mxGeometry x="588" y="908" width="80" height="24" as="geometry" /></mxCell>
+        <mxCell id="lg_scl" parent="1" style="endArrow=none;html=1;strokeWidth=3;strokeColor=#F08C00;" edge="1">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="680" y="920" as="sourcePoint" /><mxPoint x="720" y="920" as="targetPoint" /></mxGeometry>
+        </mxCell>
+        <mxCell id="lgt_scl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;" value="I2C SCL" vertex="1"><mxGeometry x="728" y="908" width="80" height="24" as="geometry" /></mxCell>
+        <mxCell id="lgt_dot" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#666666;" value="● = connected · arc = crossing, not connected" vertex="1"><mxGeometry x="820" y="908" width="260" height="24" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
