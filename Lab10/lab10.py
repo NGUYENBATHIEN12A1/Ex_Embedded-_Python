@@ -11,4 +11,4 @@ _thread.start_new_thread(blink, (26, 500))
 _thread.start_new_thread(blink, (27, 100)) 
 blink(2, 1000)                              
 
-# chill vậy ???
+# chill vậy ??? WTF bro ???
